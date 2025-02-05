@@ -1,5 +1,5 @@
 try {
-    python -v
+    python -V
 }
 catch {
     iwr https://www.python.org/ftp/python/3.12.8/python-3.12.8-amd64.exe -OutFile "$env:USERPROFILE\downloads\python-3.12.8-amd64.exe"
