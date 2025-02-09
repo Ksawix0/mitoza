@@ -11,7 +11,8 @@ catch {
     while ($a -eq 1) {
         try {
             Start-Sleep -Seconds 2
-            cmd python -m pip install pyqt5
+            $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+            python -m pip install pyqt5
         }
         finally {
             $a = 0 
