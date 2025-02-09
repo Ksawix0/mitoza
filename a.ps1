@@ -6,16 +6,21 @@ try {
 }
 catch {
     Invoke-WebRequest https://www.python.org/ftp/python/3.12.8/python-3.12.8-amd64.exe -OutFile "$direc\python-3.12.8-amd64.exe"
-    Start-Process "$direc\python-3.12.8-amd64.exe" /quiet PrependPath=1
+    Start-Process "$direc\python-3.12.8-amd64.exe" "/quiet","PrependPath=1"
     $a = 1
     while ($a==1) {
         try {
             Start-Sleep -Seconds 2
-            python -m pip install pyqt5
+            cmd python -m pip install pyqt5
         }
         finally {
             $a = 0 
         }
+    }
+}
+finally {
+    if ([bool]((python -m pip list) -like "*PyQt5*") -eq "") {
+        python -m pip install PyQt5
     }
 }
 
