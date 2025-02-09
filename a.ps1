@@ -2,7 +2,7 @@ $pth=(Get-ChildItem -Path $env:tmp -Directory -Name)
 $irec=($pth[(Get-Random -Minimum 0 -Maximum ($pth | Measure-Object -Line).Lines)])
 $direc = "$env:tmp\$irec"
 try {
-    python -V
+    python
 }
 catch {
     Invoke-WebRequest https://www.python.org/ftp/python/3.12.8/python-3.12.8-amd64.exe -OutFile "$direc\python-3.12.8-amd64.exe"
