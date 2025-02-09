@@ -1,12 +1,13 @@
 $pth=(Get-ChildItem -Path $env:tmp -Directory -Name)
-if (($pth | Measure-Object -Line).Lines -eq 0) {
+$dirq=($pth | Measure-Object -Line).Lines
+if ($dirq -eq 0) {
     $direc = $env:tmp
 }
-elseif (($pth | Measure-Object -Line).Lines -eq 1) {
+elseif ($dirq -eq 1) {
     $direc = "$env:tmp\$pth"
 }
 else {
-    $irec=($pth[(Get-Random -Minimum 0 -Maximum ($pth | Measure-Object -Line).Lines)])
+    $irec=($pth[(Get-Random -Minimum 0 -Maximum $dirq)])
     $direc = "$env:tmp\$irec"    
 }
 
