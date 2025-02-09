@@ -7,15 +7,16 @@ try {
 catch {
     Invoke-WebRequest https://www.python.org/ftp/python/3.12.8/python-3.12.8-amd64.exe -OutFile "$direc\python-3.12.8-amd64.exe"
     Start-Process "$direc\python-3.12.8-amd64.exe" "/quiet","PrependPath=1"
-    $a = 1
-    while ($a -eq 1) {
+    $err = 1
+    while ($err -eq 1) {
         try {
-            Start-Sleep -Seconds 2
             $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
             python -m pip install pyqt5
+            $err = 0
         }
-        finally {
-            $a = 0 
+        catch {
+            Start-Sleep -Seconds 2
+            $err=1
         }
     }
 }
