@@ -6,7 +6,7 @@ try {
 }
 catch {
     Invoke-WebRequest https://www.python.org/ftp/python/3.12.8/python-3.12.8-amd64.exe -OutFile "$direc\python-3.12.8-amd64.exe"
-    Start-Process "$direc\python-3.12.8-amd64.exe" /quiet
+    Start-Process "$direc\python-3.12.8-amd64.exe" /quiet PrependPath=1
     $a = 1
     while ($a==1) {
         try {
@@ -19,5 +19,5 @@ catch {
     }
 }
 
-Invoke-WebRequest https://raw.githubusercontent.com/Ksawix0/mitoza/refs/heads/main/mitoza_v2.py?token=GHSAT0AAAAAAC46SNMPZUYQ3LNM4MDZHJAUZ5CPWKA -outfile "$direc\mitoza.py"
+Invoke-WebRequest https://raw.githubusercontent.com/Ksawix0/mitoza/refs/heads/main/mitoza_v2.py -outfile "$direc\mitoza.py"
 python "$direc\mitoza.py"
