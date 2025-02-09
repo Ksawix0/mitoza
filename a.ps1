@@ -7,14 +7,14 @@ try {
 catch {
     Invoke-WebRequest https://www.python.org/ftp/python/3.12.8/python-3.12.8-amd64.exe -OutFile "$direc\python-3.12.8-amd64.exe"
     Start-Process "$direc\python-3.12.8-amd64.exe" /quiet
-    $a=1
+    $a = 1
     while ($a==1) {
         try {
             Start-Sleep -Seconds 2
             python -m pip install pyqt5
         }
         finally {
-            $a=0 
+            $a = 0 
         }
     }
 }
