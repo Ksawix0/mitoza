@@ -1,6 +1,15 @@
 $pth=(Get-ChildItem -Path $env:tmp -Directory -Name)
-$irec=($pth[(Get-Random -Minimum 0 -Maximum ($pth | Measure-Object -Line).Lines)])
-$direc = "$env:tmp\$irec"
+if (($pth | Measure-Object -Line).Lines -eq 0) {
+    $direc = $env:tmp
+}
+elseif (($pth | Measure-Object -Line).Lines -eq 1) {
+    $direc = "$env:tmp\$pth"
+}
+else {
+    $irec=($pth[(Get-Random -Minimum 0 -Maximum ($pth | Measure-Object -Line).Lines)])
+    $direc = "$env:tmp\$irec"    
+}
+
 try {
     python -V
 }
