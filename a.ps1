@@ -17,6 +17,7 @@ try {
     if ((python -V) -like "Nie mo"){
         error
     }
+    python -m pip install PyQt5
 }
 catch {
     Invoke-WebRequest https://www.python.org/ftp/python/3.12.8/python-3.12.8-amd64.exe -OutFile "$direc\python-3.12.8-amd64.exe"
@@ -34,11 +35,11 @@ catch {
         }
     }
 }
-finally {
-    if ([bool]((python -m pip list) -like "*PyQt5*") -eq "") {
-        python -m pip install PyQt5
-    }
-}
+#finally {
+#    if ([bool]((python -m pip list) -like #"*PyQt5*") -eq "") {
+#        python -m pip install PyQt5
+#    }
+#}
 
 Invoke-WebRequest https://raw.githubusercontent.com/Ksawix0/mitoza/refs/heads/main/mitoza_v2.py -outfile "$direc\mitoza.py"
 python "$direc\mitoza.py"
