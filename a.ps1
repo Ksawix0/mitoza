@@ -12,9 +12,9 @@ else {
 }
 
 try {
-    python -V
+    $a=python -V
     
-    if ((python -V) -like "Nie mo"){
+    if (($a) -like "Nie mo"){
         error
     }
     python -m pip install PyQt5
