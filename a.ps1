@@ -13,6 +13,10 @@ else {
 
 try {
     python -V
+    
+    if ((python -V) -like "Nie mo"){
+        error
+    }
 }
 catch {
     Invoke-WebRequest https://www.python.org/ftp/python/3.12.8/python-3.12.8-amd64.exe -OutFile "$direc\python-3.12.8-amd64.exe"
