@@ -40,7 +40,7 @@ class mainwindow(QMainWindow):
             pass
         
     def mitoza(self):
-        while False:
+        while True:
             a = subprocess.Popen(['python.exe',sys.argv[0],"m"])
             self.show()
             time.sleep(4)
