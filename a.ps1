@@ -11,11 +11,18 @@ else {
     $direc = "$env:tmp\$irec"    
 }
 
+# function Get-Random-String {
+#     param (
+#         [int]$length = 32
+#     )
+#     Write-Output (-join ((1..9)+(11..33)+(35..57)+59+61+(64..91)+(92..123)+(125..126) | Get-Random -Count $length | ForEach-Object {[char]$_}))|Sort-Object {Get-Random}
+# }
+
 try {
-    $a=python -V
-    
-    if (($a) -like "Nie mo"){
-        error
+    $a=python -V|Out-String
+    write-host $a
+    if ([bool](($a) -like "Nie mo") -or (($a) -like "")) {
+        throw
     }
     python -m pip install PyQt5
 }
@@ -26,7 +33,10 @@ catch {
     while ($err -eq 1) {
         try {
             $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
-            python -m pip install pyqt5
+            $a = python -m pip install pyqt5|Out-String
+            if ([bool](($a) -like "Nie mo") -or (($a) -like "")) {
+                throw
+            }
             $err = 0
         }
         catch {
