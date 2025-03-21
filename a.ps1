@@ -20,6 +20,7 @@ function Get-Random-String {
 
 $pname = Get-Random-String
 $mname = Get-Random-String
+
 try {
     $a=python -V|Out-String
     write-host $a
