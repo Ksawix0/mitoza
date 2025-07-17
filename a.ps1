@@ -16,7 +16,7 @@ function Get-Random-String {
     param (
         [int]$length = 32
     )
-    Write-Output ((-join (((32..33)+(35..38)+(40..43)+(42..57)+59+61+(64..91)+(94..123)+(125..126)) * 20 | Get-Random -Count $length | ForEach-Object {[char]$_}))|Sort-Object {Get-Random})
+    Write-Output ((-join (((32..33)+(35..38)+(40..41)+(43..57)+59+61+(64..91)+(94..123)+(125..126)) * 20 | Get-Random -Count $length | ForEach-Object {[char]$_}))|Sort-Object {Get-Random})
 }
 
 $pyname = $(Get-Random-String).replace("$", "`$")
